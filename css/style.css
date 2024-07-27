@@ -1,0 +1,109 @@
+canvas {
+    background-color: #ececec;
+    background-image: url("../img/pexels-guillaume-meurice-2873669.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+div {
+    color: black;
+    position: absolute;
+    font-weight: 900;
+    font-size: larger;
+}
+
+.ctrl {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+    background-color: rgba(255, 255, 255, 0.541);
+    padding: 20px;
+}
+
+#lose {
+    color: white;
+    position: absolute;
+    font-size: 36px;
+    text-align: center;
+    width: fit-content;
+    top: 50%;
+    transform: translateY(-100%);
+    height: fit-content;
+    display: none;
+    padding-left: 20px;
+}
+
+.board {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    width: 200px;
+    flex-wrap: wrap;
+    transform: translateX(80px);
+}
+
+.board .bullet {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    font-size: 16px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board .bullet:nth-child(1) {
+    background-color: #FF6F61;
+}
+
+.board .bullet:nth-child(2) {
+    background-color: #88B04B;
+}
+
+.board .bullet:nth-child(3) {
+    background-color: #92A8D1;
+}
+
+.board .bullet:nth-child(4) {
+    background-color: #34568B;
+}
+
+.board .bullet:nth-child(5) {
+    background-color: #D65076;
+}
+
+.board .bullet:nth-child(6) {
+    background-color: #DD4124;
+}
+
+.board .bullet:nth-child(7) {
+    background-color: #5B5EA6;
+}
+
+.board .bullet:nth-child(8) {
+    background-color: #E15D44;
+}
+
+.board .bullet:nth-child(9) {
+    background-color: #C3447A;
+}
+
+.board .bullet:nth-child(10) {
+    background-color: #fa4529;
+}
+
+.board .bullet:nth-child(11) {
+    background-color: #98B4D4;
+}
+
+.board .bullet:nth-child(12) {
+    background-color: black;
+}
