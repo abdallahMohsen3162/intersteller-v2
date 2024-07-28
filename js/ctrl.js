@@ -10,7 +10,7 @@ let h = canvas.height,
     w = canvas.width;
 
 /*start circle*/
-let GLOBAL_COUNT = 3
+let GLOBAL_COUNT = 5
 class Circle {
     constructor(x, y, radius, acceleration, speed, fill = 'black', border = 'white') {
         this.x = x;
