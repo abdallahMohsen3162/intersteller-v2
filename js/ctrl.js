@@ -124,7 +124,7 @@ let colors = [
 
 
 
-
+const GLOBAL_SCALING_ENEMIE = 100;
 let GenerateEnemy = () => {
 
     let color = colors[Math.floor(Math.random() * colors.length)];
@@ -133,16 +133,17 @@ let GenerateEnemy = () => {
 
     if (rand == 0) {
         let x = Math.random() * w;
-        enemie = new Circle(x, 0, 20, { 'x': 0, 'y': 0 }, { 'x': ((w / 2) - x) / 300, 'y': (h / 2) / 300 }, color, color);
+        new Circle(1,1,1,{ 'x': 0, 'y': 0 }, { 'x': 0, 'y': 0 }, color, color);
+        enemie = new Circle(x, 0, 20, { 'x': 0, 'y': 0 }, { 'x': ((w / 2) - x) / GLOBAL_SCALING_ENEMIE, 'y': (h / 2) / GLOBAL_SCALING_ENEMIE }, color, color);
     } else if (rand == 1) {
         let y = Math.random() * h;
-        enemie = new Circle(w, y, 20, { 'x': 0, 'y': 0 }, { 'x': -(w / 2) / 300, 'y': ((h / 2) - y) / 300 }, color, color);
+        enemie = new Circle(w, y, 20, { 'x': 0, 'y': 0 }, { 'x': -(w / 2) / GLOBAL_SCALING_ENEMIE, 'y': ((h / 2) - y) / GLOBAL_SCALING_ENEMIE }, color, color);
     } else if (rand == 2) {
         let x = Math.random() * w;
-        enemie = new Circle(x, h, 20, { 'x': 0, 'y': 0 }, { 'x': ((w / 2) - x) / 300, 'y': -(h / 2) / 300 }, color, color);
+        enemie = new Circle(x, h, 20, { 'x': 0, 'y': 0 }, { 'x': ((w / 2) - x) / GLOBAL_SCALING_ENEMIE, 'y': -(h / 2) / GLOBAL_SCALING_ENEMIE }, color, color);
     } else if (rand == 3) {
         let y = Math.random() * h;
-        enemie = new Circle(0, y, 20, { 'x': 0, 'y': 0 }, { 'x': (w / 2) / 300, 'y': ((h / 2) - y) / 300 }, color, color);
+        enemie = new Circle(0, y, 20, { 'x': 0, 'y': 0 }, { 'x': (w / 2) / GLOBAL_SCALING_ENEMIE, 'y': ((h / 2) - y) / GLOBAL_SCALING_ENEMIE }, color, color);
     }
 
     enemies.push(enemie)
@@ -155,10 +156,9 @@ let Mouse = {
     y: null
 }
 
-let speed_scale = 10;
+let speed_scale = 15;
 
-document.addEventListener("click", (event) => {
-
+const GenerateBullet = (event) => {
     let xSpeed = (event.clientX - (w / 2)),
         ySpeed = (event.clientY - (h / 2)),
         tan = ySpeed / xSpeed;
@@ -174,9 +174,36 @@ document.addEventListener("click", (event) => {
 
 
     bullets.push(newcircle);
+}
 
-
+document.addEventListener("click", (event) => {
+    GenerateBullet(event)
+    
 })
+
+let mouseIsDown = false;
+document.addEventListener("keydown", (event) => {
+    mouseIsDown = true;
+})
+
+document.addEventListener("keyup", (event) => {
+    mouseIsDown = false;
+})
+
+document.addEventListener("mousedown", (event) => {
+    mouseIsDown = true;
+})
+
+document.addEventListener("mouseup", (event) => {
+    mouseIsDown = false;
+})
+
+document.addEventListener("mousemove", (event) => {
+    Mouse.x = event.clientX;
+    Mouse.y = event.clientY;
+})
+
+
 
 document.querySelector('#lose button').onclick = function() {
     let loc = window.location;
@@ -209,6 +236,13 @@ function ceterilizedcircle() {
 }
 
 let line_move = () => {
+    if(mouseIsDown && bullets.length <= 100){
+        let event = {
+            clientX: Mouse.x,
+            clientY: Mouse.y
+        }
+        GenerateBullet(event);
+    }
     ctx.clearRect(0, 0, w, h);
 
     for (var i = 0; i < bullets.length; i++) {
