@@ -236,7 +236,7 @@ function ceterilizedcircle() {
 }
 
 let line_move = () => {
-    if(mouseIsDown && bullets.length <= 100){
+    if(mouseIsDown && bullets.length <= 600){
         let event = {
             clientX: Mouse.x,
             clientY: Mouse.y
